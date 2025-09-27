@@ -1,0 +1,11 @@
+services:
+  frontend:
+    build:
+      context: ./front
+      dockerfile: Dockerfile.prod
+    container_name: portfolio_front_prod
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
