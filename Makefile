@@ -1,6 +1,6 @@
 SERVICE_NAME := frontend
 
-DOCKER_COMPOSE_DEV := docker-compose.yml
+DOCKER_COMPOSE_DEV := docker-compose.dev.yml
 DOCKER_COMPOSE_PROD := docker-compose.prod.yml
 
 PROJECT_DIR := ./front

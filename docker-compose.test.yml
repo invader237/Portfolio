@@ -3,8 +3,10 @@ services:
     build:
       context: ./front
       dockerfile: Dockerfile.prod
-    container_name: portfolio_front_prod
+    container_name: portfolio_front_test
     ports:
-      - "80:3000"
+      - "3000:3000"
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=test
+    restart: unless-stopped
+
