@@ -127,6 +127,4 @@ export default function LandingPage() {
 
     </div>
   );
-oot
-~                                       │   48 ▎ ▎ ▎   ▎   ▎     ▎   ▎ ▎ <ToggleGroup.Root
-~                                       │   48 ▎ ▎ ▎   ▎   ▎     ▎   ▎ ▎ <ToggleGroup.Root
+}
