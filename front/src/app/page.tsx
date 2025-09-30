@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useLayoutEffect} from "react";
+import React, {useState, useLayoutEffect} from "react";
 import "./globals.css";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ToggleGroup } from "radix-ui";
@@ -12,7 +12,7 @@ export default function LandingPage() {
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [0, 300], [1, 0]); 
   const [myExperiencesItemHeight, setMyExperiencesItemHeight] = useState(0);
-  const ref = React.useRef<HTMLDivElement>(null);
+  const ref = React.useRef<HTMLButtonElement>(null);
 
   const [value, setValue] = useState('Sogeti2');
   const myExperiencesItems = [
@@ -41,8 +41,7 @@ export default function LandingPage() {
                   <div className="flex flex-col justify-center items-left min-h-screen">
                     <div className="flex flex-col md:flex-row justify-left gap-8">
                         <h1 className="text-7xl font-bold text-white">
-                          Hi, I'm Diego, <br />a{" "} <span className="relative inline-block">
-                            {/* Trait derrière le texte */}
+                          Hi, I&apos;m Diego, <br />a{" "} <span className="relative inline-block">
                             <motion.div
                               className="absolute left-0 bottom-1 h-[12px] bg-pink-500/80 z-0"
                               initial={{ scaleX: 0 }}
@@ -106,7 +105,6 @@ export default function LandingPage() {
                                 key={item.value}
                                 value={item.value}
                                 ref={idx === 0 ? ref : null}
-                                //on selected change background color to pink
                                 className="px-4 py-8 text-left border-l-4 border-gray-300 data-[state=on]:text-pink-500/80"
                               >
                                 {item.label}
