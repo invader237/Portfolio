@@ -47,7 +47,7 @@ export default function LandingPage() {
                               initial={{ scaleX: 0 }}
                               whileInView={{ scaleX: 1 }}
                               viewport={{ once: false, amount: 0.6 }}
-                              transition={{ duration: 0.6, ease: "easeOut" }}
+                          transition={{ duration: 0.6, ease: "easeOut" }}
                               style={{ transformOrigin: "left", width: "100%" }}
                             />
                             <span className="relative z-10">Fullstack</span>
@@ -127,4 +127,6 @@ export default function LandingPage() {
 
     </div>
   );
-}
+oot
+~                                       │   48 ▎ ▎ ▎   ▎   ▎     ▎   ▎ ▎ <ToggleGroup.Root
+~                                       │   48 ▎ ▎ ▎   ▎   ▎     ▎   ▎ ▎ <ToggleGroup.Root
