@@ -1,15 +1,10 @@
 name: Prod
 
 on:
-  workflow_dispatch:
   push:
     branches:
-      - ci/update-workflow
-  pull_request:
-    branches:
       - main
-      - dev
-    types: [opened, synchronize, reopened]
+  workflow_dispatch:
 
 jobs:
   build-test-deploy:
@@ -47,4 +42,4 @@ jobs:
             git pull origin main
             docker compose -f docker-compose.prod.yml pull
             docker compose -f docker-compose.prod.yml up -d --build
-          EOF
+EOF
