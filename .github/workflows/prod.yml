@@ -26,12 +26,11 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+        working-directory: ./front
 
       - name: Run lint
         run: npm run lint
-
-      - name: Run tests
-        run: npm test || true  
+        working-directory: ./front
 
       - name: Deploy to server
         env:
