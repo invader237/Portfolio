@@ -29,7 +29,7 @@ export default function LandingPage() {
   return (
     <div className="w-full h-full">
 
-        <div className="absolute top-4 left-4 cursor-pointer">
+        <div className="fixed top-4 left-4 cursor-pointer">
           <div className="p-2 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-md hover:bg-white/20 transition">
             <MenuIcon className="text-white text-2xl" />
           </div>
