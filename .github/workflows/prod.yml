@@ -2,6 +2,9 @@ name: Prod
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - ci/update-workflow
   pull_request:
     branches:
       - main
