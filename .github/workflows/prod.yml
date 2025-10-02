@@ -1,9 +1,6 @@
 name: Prod
 
 on:
-  push:
-    branches:
-      - fix/ci-workflow
   pull_request:
     branches:
       - main
