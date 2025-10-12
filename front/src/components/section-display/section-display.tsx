@@ -31,7 +31,7 @@ export default function SectionDisplay({ sections }: SectionDisplayProps) {
   }, [sections]);
 
   return (
-    <div className="fixed top-1/2 right-6 -translate-y-1/2 flex flex-col items-end z-50 space-y-8">
+    <div className="hidden md:fixed md:top-1/2 md:right-6 md:-translate-y-1/2 md:flex md:flex-col md:items-end md:z-50 md:space-y-8">
       {sections.map((section) => {
         const id = section.toLowerCase().replace(/\s+/g, '-');
         const isActive = activeSection === id;
