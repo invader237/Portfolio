@@ -29,7 +29,7 @@ export default function LandingPage() {
 
   return (
     <div>
-        <SectionDisplay sections={["Home", "My experience"]} />
+        <SectionDisplay sections={["Home", "About me", "My experience"]} />
         <div className="w-full h-full">
 
             <Tooltip.Provider delayDuration={500}>
@@ -88,7 +88,7 @@ export default function LandingPage() {
                         >
                           <button className="px-4 py-2 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-md hover:bg-white/20 transition text-white"
                             onClick={() => {
-                              document.getElementById("my-experience")?.scrollIntoView({
+                              document.getElementById("about-me")?.scrollIntoView({
                                 behavior: "smooth", 
                                 block: "start"
                               });
@@ -98,6 +98,22 @@ export default function LandingPage() {
                           </button>
                         </motion.div>
                       </div>
+                    </section>
+
+                    <section id="about-me" className="m-0 p-0">
+                        <motion.div
+                            className="flex flex-col justify-center items-start gap-8 min-h-screen pt-0 mt-0"
+                            initial={{ opacity: 0.1, y: 100 }} 
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: false, amount: 0.1 }} 
+                            transition={{ duration: 0.5, ease: "easeIn" }}
+                        >
+                            <h1 className="text-5xl font-bold text-white">About me</h1>
+                            <p className="text-white/70">
+                                I’m Diego T., a passionate and curious full-stack developer currently completing my third year of a Bachelor’s degree in Computer Science, specialized in application development. I enjoy turning ideas into functional and user-friendly web experiences, exploring both frontend and backend aspects of development. Beyond software creation, I’m deeply interested in everything related to the tech world and how it evolves. I’m currently looking for an internship starting in February to keep learning, growing, and contributing to meaningful projects.
+                            </p>
+                        </motion.div>
+
                     </section>
 
                     <section id="my-experience" className="m-0 p-0">
