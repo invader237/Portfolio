@@ -7,6 +7,7 @@ import { ToggleGroup, Tooltip } from "radix-ui";
 import MenuIcon from '@mui/icons-material/Menu';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SectionDisplay from "@/components/section-display";
+import ProjectCard, { ProjectCardProps } from "@/components/project-card";
 
 export default function LandingPage() {
 
@@ -21,6 +22,44 @@ export default function LandingPage() {
     { value: 'Sogeti1', label: 'Sogeti', title: 'Fullstack development internship', subtitle: 'April 2025 - May 2025', description: 'Designed and implemented a custom ticketing application to replace Jira within a client project’s production workflow, streamlining processes by adapting to complex business logic requirements.' },
     ];
 
+    const projects: ProjectCardProps[] = [
+      {
+        id: 1,
+        title: "Portfolio Personnel",
+        description: "Un site web pour présenter mes projets, mes compétences et mon parcours.",
+        imageUrl: "https://placehold.co/100x100",
+        projectUrl: "https://monportfolio.com",
+      },
+      {
+        id: 2,
+        title: "Application Météo",
+        description: "Application web affichant la météo actuelle et les prévisions en temps réel.",
+        imageUrl: "https://placehold.co/100x100",
+        projectUrl: "https://github.com/monprofil/meteo-app",
+      },
+      {
+        id: 3,
+        title: "Gestionnaire de tâches",
+        description: "Une application de gestion de tâches avec React et TypeScript.",
+        imageUrl: "https://placehold.co/100x100",
+        projectUrl: "https://todoapp.example.com",
+      },
+      {
+        id: 4,
+        title: "API de recommandations",
+        description: "Backend Spring Boot pour recommander des vêtements selon la météo.",
+        imageUrl: "https://placehold.co/100x100",
+        projectUrl: "https://github.com/monprofil/clothing-api",
+      },
+      {
+        id: 5,
+        title: "Jeu Pokémon Battle",
+        description: "Un jeu web où les utilisateurs peuvent créer et combattre des Pokémon personnalisés.",
+        imageUrl: "https://placehold.co/100x100",
+        projectUrl: "https://pokemonbattle.example.com",
+      },
+    ];
+
   useLayoutEffect(() => {
     if (ref.current) {
       setMyExperiencesItemHeight(ref.current.offsetHeight);
@@ -29,7 +68,7 @@ export default function LandingPage() {
 
   return (
     <div>
-        <SectionDisplay sections={["Home", "About me", "My experience"]} />
+        <SectionDisplay sections={["Home", "About me", "My experience", "My Projects"]} />
         <div className="w-full h-full">
 
             <Tooltip.Provider delayDuration={500}>
@@ -159,6 +198,34 @@ export default function LandingPage() {
                             </div>
 
                           </motion.div>
+                    </section>
+
+                    <section id="my-projects" className="m-0 p-0">
+                      <motion.div
+                        className="flex flex-col justify-center items-start gap-8 min-h-screen pt-0 mt-0 mb-16 w-full"
+                        initial={{ opacity: 0.1, y: 100 }} 
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: false, amount: 0.1 }} 
+                        transition={{ duration: 0.5, ease: "easeIn" }}
+                      >
+                        <h1 className="text-5xl font-bold text-white">My projects</h1>
+                        <p className="text-white/70">
+                          Here are some of my personal projects that I&apos;ve worked on to sharpen my skills and explore new technologies.
+                        </p>
+
+                        <div className="grid grid-cols-3 gap-6">
+                          {projects.map((project) => (
+                            <ProjectCard
+                              key={project.id}
+                              id={project.id}
+                              title={project.title}
+                              description={project.description}
+                              imageUrl={project.imageUrl}
+                              projectUrl={project.projectUrl}
+                            />
+                          ))}
+                        </div>
+                      </motion.div>
                     </section>
 
                 
