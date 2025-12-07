@@ -1,10 +1,9 @@
 name: Prod
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-    types: [opened, synchronize, reopened]
 
 jobs:
   build-test-deploy:
