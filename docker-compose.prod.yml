@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile.prod
     container_name: portfolio_front_prod
     ports:
-      - "80:3000"
+      - "3000:3000"
     environment:
       - NODE_ENV=production
     networks:
@@ -13,4 +13,4 @@ services:
 
 networks:
   portfolio_net:
-    driver: true
+    external: true
