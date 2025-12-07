@@ -25,38 +25,17 @@ export default function LandingPage() {
     const projects: ProjectCardProps[] = [
       {
         id: 1,
-        title: "Portfolio Personnel",
-        description: "Un site web pour présenter mes projets, mes compétences et mon parcours.",
+        title: "Personal Portfolio (WIP)",
+        description: "A website to showcase my projects, skills, and background.",
         imageUrl: "https://placehold.co/100x100",
-        projectUrl: "https://monportfolio.com",
+        projectUrl: "https://trivino.info",
       },
       {
         id: 2,
-        title: "Application Météo",
-        description: "Application web affichant la météo actuelle et les prévisions en temps réel.",
+        title: "Neuroom (WIP)",
+        description: "An application developed as part of my studies that uses AI to recognize the different rooms of the university.",
         imageUrl: "https://placehold.co/100x100",
-        projectUrl: "https://github.com/monprofil/meteo-app",
-      },
-      {
-        id: 3,
-        title: "Gestionnaire de tâches",
-        description: "Une application de gestion de tâches avec React et TypeScript.",
-        imageUrl: "https://placehold.co/100x100",
-        projectUrl: "https://todoapp.example.com",
-      },
-      {
-        id: 4,
-        title: "API de recommandations",
-        description: "Backend Spring Boot pour recommander des vêtements selon la météo.",
-        imageUrl: "https://placehold.co/100x100",
-        projectUrl: "https://github.com/monprofil/clothing-api",
-      },
-      {
-        id: 5,
-        title: "Jeu Pokémon Battle",
-        description: "Un jeu web où les utilisateurs peuvent créer et combattre des Pokémon personnalisés.",
-        imageUrl: "https://placehold.co/100x100",
-        projectUrl: "https://pokemonbattle.example.com",
+        projectUrl: "https://neuroom.fr",
       },
     ];
 
