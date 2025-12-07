@@ -5,6 +5,12 @@ services:
       dockerfile: Dockerfile.prod
     container_name: portfolio_front_prod
     ports:
-      - "80:3000"
+      - "3000:3000"
     environment:
       - NODE_ENV=production
+    networks:
+      - portfolio_net
+
+networks:
+  portfolio_net:
+    external: true
