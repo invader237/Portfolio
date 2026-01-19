@@ -12,7 +12,9 @@ export default function AboutMeSection() {
       >
         <h1 className="text-5xl font-bold text-white">About me</h1>
         <p className="text-white/70">
-            I’m Diego T., a passionate and curious full-stack developer currently completing my third year of a Bachelor’s degree in Computer Science, specialized in application development. I enjoy turning ideas into functional and user-friendly web experiences, exploring both frontend and backend aspects of development. Beyond software creation, I’m deeply interested in everything related to the tech world and how it evolves. I’m currently looking for an internship starting in February to keep learning, growing, and contributing to meaningful projects.
+I’m Diego T., a passionate and curious full-stack developer currently completing my third year of a Bachelor’s degree in Computer Science, specialized in application development. I enjoy turning ideas into functional and user-friendly web experiences, exploring both frontend and backend aspects of development.
+
+Alongside software engineering, I have developed a strong interest in machine learning and deep learning, particularly through image classification projects using convolutional neural networks (CNNs) and transfer learning.
         </p>
       </motion.div>
     </section>
