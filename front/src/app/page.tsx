@@ -7,6 +7,7 @@ import AboutMeSection from "@/components/landing-page/about-me-section";
 import ExperienceSection from "@/components/landing-page/experience-section";
 import ProjectsSection from "@/components/landing-page/project-section";
 import SectionDisplay from "@/components/section-display";
+import SocialLink from "@/components/social-link";
 import { ProjectCardProps } from "@/components/project-card";
 
 import { Tooltip } from "radix-ui";
@@ -62,6 +63,7 @@ export default function LandingPage() {
                 </Tooltip.Content>
             </Tooltip.Root>
         </Tooltip.Provider>
+        <SocialLink/>
       <div className="flex flex-col w-full items-center">
         <div className="w-full max-w-4xl flex flex-col gap-4 px-4">
         <SectionDisplay sections={["Home", "About me", "My experience", "My Projects"]} />
