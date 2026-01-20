@@ -5,9 +5,11 @@ import SkillBadge from '@/components/skill-badge';
 import SearchInput from '@/components/search-input';
 
 const skills = [
-  'JavaScript','TypeScript','React','Next.js','Java','Spring Boot',
-  'Docker','Kubernetes','HTML','CSS','Tailwind CSS','Git',
-  'RESTful APIs','GraphQL','SQL','NoSQL','AWS','Azure','CI/CD','Agile Methodologies',
+  'JavaScript', 'TypeScript', 'React', 'Next.js', 'Java', 'Spring Boot 3', 'Spring Framework', 'Hibernate',
+  'C', 'Python', 'Docker', 'Kubernetes', 'HTML', 'CSS', 'Tailwind CSS', 'Git', 'RESTful APIs', 'OpenAPI',
+  'SQL', 'NoSQL', 'CI/CD', 'Agile Methodologies', 'Kanban', 'Scrum', 'Microservices', 'Hexagonal Architecture',
+  'FastAPI', 'Expo', 'React Native', 'PHP', 'Symfony', 'MySQL', 'PostgreSQL', 'MongoDB', 'Pytorch', 'Machine Learning',
+  'CNN', 'Deep Learning',
 ];
 
 export default function SkillsSection() {
