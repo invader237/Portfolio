@@ -31,7 +31,7 @@ export default function SkillsSection() {
 
         <SearchInput value={search} onChange={setSearch} />
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-3 max-h-30 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
           {filteredSkills.map((skill, index) => (
             <SkillBadge key={skill} skill={skill} index={index} />
           ))}
