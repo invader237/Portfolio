@@ -8,9 +8,9 @@ interface ProjectsSectionProps {
 
 export default function ProjectsSection({ projects }: ProjectsSectionProps) {
   return (
-    <section id="my-projects" className="min-h-screen flex flex-col gap-8 mb-16 w-full">
+    <section id="my-projects" className="min-h-screen flex flex-col gap-8 mb-32 w-full">
       <motion.div
-        className="flex flex-col justify-center items-start gap-8 min-h-screen pt-0 mt-0 mb-16 w-full"
+        className="flex flex-col justify-center items-start gap-8 w-full"
         initial={{ opacity: 0.1, y: 100 }} 
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.1 }} 
@@ -21,9 +21,11 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
           Here are some of my personal projects that I&apos;ve worked on to sharpen my skills and explore new technologies.
         </p>
 
-      <div className="grid grid-cols-3 gap-6">
-        {projects.map(p => <ProjectCard key={p.id} {...p} />)}
-      </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+          {projects.map(p => (
+            <ProjectCard key={p.id} {...p} />
+          ))}
+        </div>
       </motion.div>
     </section>
   );

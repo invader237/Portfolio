@@ -6,7 +6,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 export default function SocialLink() {
   return (
-    <div className="fixed top-4 right-4">
+    <div className="fixed top-4 right-4 z-999">
       <div className="p-2 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-md hover:bg-white/20 transition flex gap-4">
         
         <a
