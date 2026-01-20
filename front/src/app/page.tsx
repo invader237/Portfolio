@@ -7,6 +7,7 @@ import AboutMeSection from "@/components/landing-page/about-me-section";
 import ExperienceSection from "@/components/landing-page/experience-section";
 import ProjectsSection from "@/components/landing-page/project-section";
 import SectionDisplay from "@/components/section-display";
+import SkillSection from "@/components/landing-page/skills-section";
 import SocialLink from "@/components/social-link";
 import { ProjectCardProps } from "@/components/project-card";
 
@@ -42,7 +43,7 @@ export default function LandingPage() {
         <Tooltip.Provider delayDuration={500}>
             <Tooltip.Root>
                 <Tooltip.Trigger asChild>
-                    <div className="fixed top-4 left-4 cursor-pointer">
+                    <div className="fixed top-4 left-4 cursor-pointer z-999">
                       <div className="p-2 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-md hover:bg-white/20 transition">
                         <MenuIcon className="text-white text-2xl" />
                       </div>
@@ -66,11 +67,12 @@ export default function LandingPage() {
         <SocialLink/>
       <div className="flex flex-col w-full items-center">
         <div className="w-full max-w-4xl flex flex-col gap-4 px-4">
-        <SectionDisplay sections={["Home", "About me", "My experience", "My Projects"]} />
+        <SectionDisplay sections={["Home", "About me", "My experience", "My Projects", "My skills"]} />
         <HeroSection scrollToId="about-me" />
         <AboutMeSection />
         <ExperienceSection items={myExperiencesItems} />
         <ProjectsSection projects={projects} />
+        <SkillSection />
         </div>
       </div>
     </div>
