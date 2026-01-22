@@ -1,4 +1,5 @@
 'use client';
+
 import { useState } from 'react';
 import SkillBadge from '@/components/skill-badge';
 import SearchInput from '@/components/search-input';
@@ -21,15 +22,39 @@ export default function SkillsSection() {
 
   return (
     <LandingPageSection sectionId="my-skills">
-        <h1 className="text-5xl font-bold text-white">My skills</h1>
+      <h1 className="text-5xl font-bold text-white mb-4">My skills</h1>
 
-        <SearchInput value={search} onChange={setSearch} />
+      <SearchInput value={search} onChange={setSearch} />
 
-        <div className="flex flex-wrap gap-3 max-h-30 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
+      <div
+        className="w-full max-w-4xl mx-auto"
+        style={{
+          borderRadius: '1rem',
+          boxShadow: `
+            inset 0 4px 6px rgba(0,0,0,0.1),
+            inset 0 -4px 6px rgba(0,0,0,0.1),
+            inset 4px 0 6px rgba(0,0,0,0.1),
+            inset -4px 0 6px rgba(0,0,0,0.1)
+          `,
+        }}
+      >
+        <div
+          className="flex flex-wrap gap-3 max-h-30 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent p-4 h-full"
+          style={{
+            borderRadius: '1rem',
+            boxShadow: `
+              inset 0 4px 6px rgba(0,0,0,0.1),
+              inset 0 -4px 6px rgba(0,0,0,0.1),
+              inset 4px 0 6px rgba(0,0,0,0.1),
+              inset -4px 0 6px rgba(0,0,0,0.1)
+            `,
+          }}
+        >
           {filteredSkills.map((skill, index) => (
             <SkillBadge key={skill} skill={skill} index={index} />
           ))}
         </div>
+      </div>
     </LandingPageSection>
   );
 }
