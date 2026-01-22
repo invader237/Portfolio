@@ -39,40 +39,41 @@ export default function LandingPage() {
     ];
 
   return (
-    <div className="w-full h-full">
-        <Tooltip.Provider delayDuration={500}>
-            <Tooltip.Root>
-                <Tooltip.Trigger asChild>
-                    <div className="fixed top-4 left-4 cursor-pointer z-999">
-                      <div className="p-2 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-md hover:bg-white/20 transition">
-                        <MenuIcon className="text-white text-2xl" />
-                      </div>
-                    </div>
-                </Tooltip.Trigger>
-                <Tooltip.Content
-                    sideOffset={8}
-                    side="right"
-                    className="
-                      bg-white/20 text-white text-sm rounded-md px-3 py-1
-                      shadow-lg
-                    "
-                >
-                    Menu (not implemented yet)
-                    <Tooltip.Arrow 
-                        className="fill-white/20"
-                    />
-                </Tooltip.Content>
-            </Tooltip.Root>
-        </Tooltip.Provider>
-        <SocialLink/>
+    <div className="w-full h-screen overflow-y-scroll snap-y snap-proximity scroll-smooth m-0 p-0">
+      <Tooltip.Provider delayDuration={500}>
+        <Tooltip.Root>
+          <Tooltip.Trigger asChild>
+            <div className="fixed top-4 left-4 cursor-pointer z-50">
+              <div className="p-2 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-md hover:bg-white/20 transition">
+                <MenuIcon className="text-white text-2xl" />
+              </div>
+            </div>
+          </Tooltip.Trigger>
+          <Tooltip.Content
+            sideOffset={8}
+            side="right"
+            className="
+              bg-white/20 text-white text-sm rounded-md px-3 py-1
+              shadow-lg
+            "
+          >
+            Menu (not implemented yet)
+            <Tooltip.Arrow className="fill-white/20" />
+          </Tooltip.Content>
+        </Tooltip.Root>
+      </Tooltip.Provider>
+
+      <SocialLink />
+
       <div className="flex flex-col w-full items-center">
-        <div className="w-full max-w-4xl flex flex-col gap-4 px-4">
-        <SectionDisplay sections={["Home", "About me", "My experience", "My Projects", "My skills"]} />
-        <HeroSection scrollToId="about-me" />
-        <AboutMeSection />
-        <ExperienceSection items={myExperiencesItems} />
-        <ProjectsSection projects={projects} />
-        <SkillSection />
+        <div className="w-full max-w-4xl px-4">
+          <SectionDisplay sections={["Home", "About me", "My experiences", "My Projects", "My skills"]} />
+
+          <HeroSection scrollToId="about-me" />
+          <AboutMeSection />
+          <ExperienceSection items={myExperiencesItems} />
+          <ProjectsSection projects={projects} />
+          <SkillSection />
         </div>
       </div>
     </div>

@@ -1,8 +1,8 @@
 'use client';
-import { motion } from 'framer-motion';
 import { useState } from 'react';
 import SkillBadge from '@/components/skill-badge';
 import SearchInput from '@/components/search-input';
+import LandingPageSection from '@/components/landing-page/landing-page-section';
 
 const skills = [
   'JavaScript', 'TypeScript', 'React', 'Next.js', 'Java', 'Spring Boot 3', 'Spring Framework', 'Hibernate',
@@ -20,13 +20,7 @@ export default function SkillsSection() {
   );
 
   return (
-    <section id="my-skills" className="min-h-screen flex flex-col gap-8 mb-16 w-full">
-      <motion.div
-        className="flex flex-col gap-8 w-full"
-        initial={{ opacity: 0.1, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeIn' }}
-      >
+    <LandingPageSection sectionId="my-skills">
         <h1 className="text-5xl font-bold text-white">My skills</h1>
 
         <SearchInput value={search} onChange={setSearch} />
@@ -36,7 +30,6 @@ export default function SkillsSection() {
             <SkillBadge key={skill} skill={skill} index={index} />
           ))}
         </div>
-      </motion.div>
-    </section>
+    </LandingPageSection>
   );
 }

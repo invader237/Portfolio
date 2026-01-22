@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="flex min-h-screen flex-col items-center p-4"
+        className="flex min-h-screen flex-col items-center p-0"
       >
         <WipPopup />
           {children}
