@@ -5,8 +5,9 @@ import "./globals.css";
 import WipPopup from "@/components/wip-popup";
 
 export const metadata: Metadata = {
-  title: "Mon Portfolio",
-  description: "Portfolio personnel",
+  title: "Diego Trivino | Full Stack Developer – React, Spring Boot, DevOps",
+  description:
+    "Portfolio of Diego Trivino, a full stack developer specializing in React, Spring Boot, Docker, and DevOps. Explore projects, technical skills, and professional experience.",
 };
 
 export default function RootLayout({
