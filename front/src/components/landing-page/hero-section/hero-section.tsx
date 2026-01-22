@@ -11,7 +11,7 @@ export default function HeroSection({ scrollToId }: HeroSectionProps) {
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center items-left relative">
+    <section id="home" className="min-h-screen flex flex-col justify-center items-left relative snap-center md:snap-none">
       <div className="flex flex-col md:flex-row justify-left gap-8">
         <h1 className="text-7xl font-bold text-white">
           Hi, I&apos;m Diego, <br />a{" "}
