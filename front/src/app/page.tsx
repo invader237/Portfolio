@@ -26,14 +26,14 @@ export default function LandingPage() {
         id: 1,
         title: "Personal Portfolio (WIP)",
         description: "A personal website designed to showcase my projects, skills, and background, while also serving as a tool to streamline and simplify the recruitment process.",
-        imageUrl: "https://placehold.co/100x100",
+        imageUrl: "/images/ilustration/project/portfolio.png",
         projectUrl: "https://trivino.info",
       },
       {
         id: 2,
         title: "Neuroom (WIP)",
         description: "An application that uses convolutional neural networks (CNNs) to recognize and classify university rooms, with an automated pipeline for dataset creation and model training.",
-        imageUrl: "https://placehold.co/100x100",
+        imageUrl: "/images/ilustration/project/neuroom.png",
         projectUrl: "https://neuroom.fr",
       },
     ];
