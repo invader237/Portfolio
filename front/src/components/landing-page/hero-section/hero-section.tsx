@@ -86,7 +86,7 @@ export default function HeroSection({ scrollToId }: HeroSectionProps) {
     >
       <img
         src="/images/profile-picture.png"
-        alt="Illustration"
+        alt="Diego Trivino Profile Picture"
         className="w-full h-full object-cover pointer-events-none"
       />
     </motion.div>
