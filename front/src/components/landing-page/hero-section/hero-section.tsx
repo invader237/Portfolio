@@ -69,7 +69,7 @@ export default function HeroSection({ scrollToId }: HeroSectionProps) {
         top-8/20 left-14/20
         -translate-x-1/2 -translate-y-1/2
         rounded-2xl
-        bg-white/10 backdrop-blur-md
+        bg-white/10 backdrop-blur-none
         border border-white/20
         shadow-xl
         pointer-events-none
