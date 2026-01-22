@@ -9,7 +9,7 @@ interface ProjectsSectionProps {
 export default function ProjectsSection({ projects }: ProjectsSectionProps) {
   return (
     <LandingPageSection sectionId="my-projects">
-        <h1 className="text-5xl font-bold text-white">My projects</h1>
+        <h2 className="text-5xl font-bold text-white">My projects</h2>
         <p className="text-white/70">
           Here are some of my personal projects that I&apos;ve worked on to sharpen my skills and explore new technologies.
         </p>

@@ -22,7 +22,7 @@ export default function SkillsSection() {
 
   return (
     <LandingPageSection sectionId="my-skills">
-      <h1 className="text-5xl font-bold text-white mb-4">My skills</h1>
+      <h2 className="text-5xl font-bold text-white mb-4">My skills</h2>
 
       <SearchInput value={search} onChange={setSearch} />
 

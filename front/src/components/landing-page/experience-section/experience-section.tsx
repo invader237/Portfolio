@@ -26,7 +26,7 @@ export default function ExperienceSection({ items }: ExperienceSectionProps) {
 
   return (
     <LandingPageSection sectionId="my-experiences">
-        <h1 className="text-5xl font-bold text-white">My experiences</h1>
+      <h2 className="text-5xl font-bold text-white">My experiences</h2>
 
       <div className="relative inline-flex flex-row">
         <span
@@ -50,9 +50,17 @@ export default function ExperienceSection({ items }: ExperienceSectionProps) {
         </ToggleGroup.Root>
 
         <div className="ml-8 mt-4 flex flex-col">
-          <span className="text-2xl font-bold text-white">{items.find(i => i.value === value)?.title}</span>
-          <span className="text-md text-white/70">{items.find(i => i.value === value)?.subtitle}</span>
-          <span className="mt-2 text-white/60">{items.find(i => i.value === value)?.description}</span>
+          <h3 className="text-2xl font-bold text-white">
+            {items.find(i => i.value === value)?.title}
+          </h3>
+
+          <p className="text-md text-white/70">
+            {items.find(i => i.value === value)?.subtitle}
+          </p>
+
+          <p className="mt-2 text-white/60">
+            {items.find(i => i.value === value)?.description}
+          </p>
         </div>
       </div>
     </LandingPageSection>

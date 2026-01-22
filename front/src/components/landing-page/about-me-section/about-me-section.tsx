@@ -4,7 +4,7 @@ import LandingPageSection from "@/components/landing-page/landing-page-section";
 export default function AboutMeSection() {
   return (
     <LandingPageSection sectionId="about-me">
-        <h1 className="text-5xl font-bold text-white">About me</h1>
+        <h2 className="text-5xl font-bold text-white">About me</h2>
         <p className="text-white/70">
 I’m Diego T., a passionate and curious full-stack developer currently completing my third year of a Bachelor’s degree in Computer Science, specialized in application development. I enjoy turning ideas into functional and user-friendly web experiences, exploring both frontend and backend aspects of development.
 
