@@ -1,7 +1,7 @@
 "use client";
 import { useState, useLayoutEffect, useRef } from "react";
-import { motion } from "framer-motion";
 import { ToggleGroup } from "radix-ui";
+import LandingPageSection from "@/components/landing-page/landing-page-section";
 
 interface ExperienceItem {
   value: string;
@@ -25,14 +25,7 @@ export default function ExperienceSection({ items }: ExperienceSectionProps) {
   }, []);
 
   return (
-    <section id="my-experience" className="min-h-screen flex flex-col gap-8">
-      <motion.div
-        className="flex flex-col justify-center items-start gap-8 min-h-screen pt-0 mt-0"
-        initial={{ opacity: 0.1, y: 100 }} 
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.1 }} 
-        transition={{ duration: 0.5, ease: "easeIn" }}
-      >
+    <LandingPageSection sectionId="my-experiences">
         <h1 className="text-5xl font-bold text-white">My experiences</h1>
 
       <div className="relative inline-flex flex-row">
@@ -62,7 +55,6 @@ export default function ExperienceSection({ items }: ExperienceSectionProps) {
           <span className="mt-2 text-white/60">{items.find(i => i.value === value)?.description}</span>
         </div>
       </div>
-      </motion.div>
-    </section>
+    </LandingPageSection>
   );
 }
