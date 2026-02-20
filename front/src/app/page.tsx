@@ -16,11 +16,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 export default function LandingPage() {
 
-  const myExperiencesItems = [
-    { value: 'Sogeti2', label: 'Sogeti', title: 'Fullstack development job', subtitle: 'June 2025 - July 2025', description: 'Deployed the application developed during the previous internship at Sogeti in a test environment, conducted application testing, and managed its deployment to production.' },
-    { value: 'Sogeti1', label: 'Sogeti', title: 'Fullstack development internship', subtitle: 'April 2025 - May 2025', description: 'Designed and implemented a custom ticketing application to replace Jira within a client project’s production workflow, streamlining processes by adapting to complex business logic requirements.' },
-    ];
-
     const projects: ProjectCardProps[] = [
       {
         id: 1,
@@ -71,7 +66,7 @@ export default function LandingPage() {
 
           <HeroSection scrollToId="about-me" />
           <AboutMeSection />
-          <ExperienceSection items={myExperiencesItems} />
+          <ExperienceSection/>
           <ProjectsSection projects={projects} />
           <SkillSection />
         </div>
