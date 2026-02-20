@@ -1,28 +1,34 @@
 "use client";
+
 import { useState, useLayoutEffect, useRef } from "react";
 import { ToggleGroup } from "radix-ui";
 import LandingPageSection from "@/components/landing-page/landing-page-section";
+import { useExperiences } from "./experience-section.hook";
 
-interface ExperienceItem {
-  value: string;
-  label: string;
-  title: string;
-  subtitle: string;
-  description: string;
-}
+export default function ExperienceSection() {
+  const { experiences, loading, error } = useExperiences();
 
-interface ExperienceSectionProps {
-  items: ExperienceItem[];
-}
-
-export default function ExperienceSection({ items }: ExperienceSectionProps) {
-  const [value, setValue] = useState(items[0].value);
+  const [selectedId, setSelectedId] = useState(
+    experiences.length ? String(experiences[0].id) : ""
+  );
   const [itemHeight, setItemHeight] = useState(0);
-  const ref = useRef<HTMLButtonElement>(null);
+  const firstItemRef = useRef<HTMLButtonElement>(null);
 
   useLayoutEffect(() => {
-    if (ref.current) setItemHeight(ref.current.offsetHeight);
-  }, []);
+    if (experiences.length && !selectedId) {
+      setSelectedId(String(experiences[0].id));
+    }
+  }, [experiences, selectedId]);
+
+  useLayoutEffect(() => {
+    if (firstItemRef.current) setItemHeight(firstItemRef.current.offsetHeight);
+  }, [experiences]);
+
+  if (loading) return <p className="text-white">Loading experiences...</p>;
+  if (error) return <p className="text-red-400">{error}</p>;
+  if (!experiences.length) return null;
+
+  const selectedExperience = experiences.find((experience) => String(experience.id) === selectedId);
 
   return (
     <LandingPageSection sectionId="my-experiences">
@@ -32,36 +38,56 @@ export default function ExperienceSection({ items }: ExperienceSectionProps) {
         <span
           className="absolute left-0 w-1 bg-pink-500/80 transition-all duration-300"
           style={{
-            top: `${items.findIndex(i => i.value === value) * itemHeight}px`,
+            top: `${experiences.findIndex((experience) => String(experience.id) === selectedId) * itemHeight}px`,
             height: `${itemHeight}px`,
           }}
         />
-        <ToggleGroup.Root type="single" value={value} onValueChange={(val) => val && setValue(val)} className="flex-col inline-flex">
-          {items.map((item, idx) => (
+
+        <ToggleGroup.Root
+          type="single"
+          value={selectedId}
+          onValueChange={(val) => val && setSelectedId(val)}
+          className="flex-col inline-flex"
+        >
+          {experiences.map((experience, idx) => (
             <ToggleGroup.Item
-              key={item.value}
-              value={item.value}
-              ref={idx === 0 ? ref : null}
+              key={experience.id}
+              value={String(experience.id)}
+              ref={idx === 0 ? firstItemRef : null}
               className="px-4 py-8 text-left border-l-4 border-gray-300 data-[state=on]:text-pink-500/80"
             >
-              {item.label}
+              {experience.company ?? "Unknown Company"}
             </ToggleGroup.Item>
           ))}
         </ToggleGroup.Root>
 
+        {selectedExperience && (
         <div className="ml-8 mt-4 flex flex-col">
           <h3 className="text-2xl font-bold text-white">
-            {items.find(i => i.value === value)?.title}
+            {selectedExperience?.title}
           </h3>
 
           <p className="text-md text-white/70">
-            {items.find(i => i.value === value)?.subtitle}
+          {selectedExperience
+            ? `${new Date(selectedExperience.startDate).toLocaleDateString("en-US", {
+                month: "long",
+                year: "numeric",
+              })} - ${
+                selectedExperience.endDate
+                  ? new Date(selectedExperience.endDate).toLocaleDateString("en-US", {
+                      month: "long",
+                      year: "numeric",
+                    })
+                  : "Present"
+              }`
+            : ""}
           </p>
 
           <p className="mt-2 text-white/60">
-            {items.find(i => i.value === value)?.description}
+            {selectedExperience.description}
           </p>
         </div>
+        )}
       </div>
     </LandingPageSection>
   );
