@@ -1,21 +1,10 @@
 "use client";
 import React, { useRef } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
+import { Project } from "@/models/project.model";
 
-export interface ProjectCardProps {
-  id: number;
-  title: string;
-  description: string;
-  imageUrl: string;
-  projectUrl: string;
-}
 
-const ProjectCard: React.FC<ProjectCardProps> = ({
-  title,
-  description,
-  imageUrl,
-  projectUrl,
-}) => {
+const ProjectCard = (project: Project) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const mouseX = useMotionValue(0);
@@ -51,7 +40,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       className="w-full"
     >
       <motion.a
-        href={projectUrl}
+        href={project.siteUrl}
         target="_blank"
         rel="noopener noreferrer"
         style={{
@@ -72,18 +61,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       >
         <div className="h-56 w-full overflow-hidden">
           <img
-            src={imageUrl}
-            alt={title}
+            src={`http://localhost:3000${project.thumbnail.url}`}
+            alt={project.thumbnail.alt}
             className="w-full h-full object-cover"
           />
         </div>
 
         <div className="p-6">
           <h3 className="text-xl font-bold mb-2 text-white">
-            {title}
+            {project.title}
           </h3>
           <p className="text-white/80 leading-relaxed">
-            {description}
+            {project.description}
           </p>
         </div>
       </motion.a>
