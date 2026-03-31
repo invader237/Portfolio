@@ -61,7 +61,7 @@ const ProjectCard = (project: Project) => {
       >
         <div className="h-56 w-full overflow-hidden">
           <img
-            src={`http://localhost:3000${project.thumbnail.url}`}
+            src={project.thumbnail.url}
             alt={project.thumbnail.alt}
             className="w-full h-full object-cover"
           />
