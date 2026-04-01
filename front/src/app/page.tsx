@@ -8,8 +8,7 @@ import ExperienceSection from "@/components/landing-page/experience-section";
 import ProjectsSection from "@/components/landing-page/project-section";
 import SectionDisplay from "@/components/section-display";
 import SkillSection from "@/components/landing-page/skills-section";
-import SocialLink from "@/components/social-link";
-import { ProjectCardProps } from "@/components/project-card";
+import FloatingActions from "@/components/floating-actions";
 
 import { Tooltip } from "radix-ui";
 import MenuIcon from '@mui/icons-material/Menu';
@@ -21,11 +20,13 @@ export default function LandingPage() {
       <Tooltip.Provider delayDuration={500}>
         <Tooltip.Root>
           <Tooltip.Trigger asChild>
-            <div className="fixed top-4 left-4 cursor-pointer z-50">
-              <div className="p-2 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-md hover:bg-white/20 transition">
-                <MenuIcon className="text-white text-2xl" />
-              </div>
-            </div>
+            <button
+              type="button"
+              className="fixed top-4 left-4 z-50 cursor-pointer rounded-xl border border-white/20 bg-white/10 p-2 shadow-md backdrop-blur-md transition hover:bg-white/20"
+              aria-label="Menu"
+            >
+              <MenuIcon className="text-white text-2xl" />
+            </button>
           </Tooltip.Trigger>
           <Tooltip.Content
             sideOffset={8}
@@ -41,7 +42,7 @@ export default function LandingPage() {
         </Tooltip.Root>
       </Tooltip.Provider>
 
-      <SocialLink />
+      <FloatingActions />
 
       <div className="flex flex-col w-full items-center">
         <div className="w-full max-w-4xl px-4">
