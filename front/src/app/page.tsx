@@ -16,23 +16,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 export default function LandingPage() {
 
-    const projects: ProjectCardProps[] = [
-      {
-        id: 1,
-        title: "Personal Portfolio (WIP)",
-        description: "A personal website designed to showcase my projects, skills, and background, while also serving as a tool to streamline and simplify the recruitment process.",
-        imageUrl: "/images/ilustration/project/portfolio.png",
-        projectUrl: "https://trivino.info",
-      },
-      {
-        id: 2,
-        title: "Neuroom (WIP)",
-        description: "An application that uses convolutional neural networks (CNNs) to recognize and classify university rooms, with an automated pipeline for dataset creation and model training.",
-        imageUrl: "/images/ilustration/project/neuroom.png",
-        projectUrl: "https://neuroom.fr",
-      },
-    ];
-
   return (
     <div className="w-full h-screen overflow-y-scroll snap-y snap-proximity scroll-smooth m-0 p-0">
       <Tooltip.Provider delayDuration={500}>
@@ -67,7 +50,7 @@ export default function LandingPage() {
           <HeroSection scrollToId="about-me" />
           <AboutMeSection />
           <ExperienceSection/>
-          <ProjectsSection projects={projects} />
+          <ProjectsSection />
           <SkillSection />
         </div>
       </div>
