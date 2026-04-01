@@ -17,7 +17,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 export default function LandingPage() {
 
   return (
-    <div className="w-full h-screen overflow-y-scroll snap-y snap-proximity scroll-smooth m-0 p-0">
+    <div id="landing-scroll-container" className="w-full h-screen overflow-y-scroll snap-none md:snap-y md:snap-proximity scroll-smooth m-0 p-0">
       <Tooltip.Provider delayDuration={500}>
         <Tooltip.Root>
           <Tooltip.Trigger asChild>
@@ -45,7 +45,16 @@ export default function LandingPage() {
 
       <div className="flex flex-col w-full items-center">
         <div className="w-full max-w-4xl px-4">
-          <SectionDisplay sections={["Home", "About me", "My experiences", "My Projects", "My skills"]} />
+          <SectionDisplay
+            scrollContainerId="landing-scroll-container"
+            sections={[
+              { label: 'Home', id: 'home' },
+              { label: 'About me', id: 'about-me' },
+              { label: 'My experiences', id: 'my-experiences' },
+              { label: 'My Projects', id: 'my-projects' },
+              { label: 'My skills', id: 'my-skills' },
+            ]}
+          />
 
           <HeroSection scrollToId="about-me" />
           <AboutMeSection />
