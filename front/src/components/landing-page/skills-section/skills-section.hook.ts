@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import axiosInstance from "@/services/api/axiosConfig";
 import { useApi } from "@/hooks/api/useApi";
+import { useLocale } from "@/contexts/locale-context";
 
 type SkillItem = {
   id: string | number;
@@ -30,12 +31,12 @@ export function useSkillsAndTechnologies() {
 }
 
 export function useSkills() {
+  const { locale } = useLocale();
+
   const fetchSkills = useCallback(async () => {
-    const response = await axiosInstance.get<{ docs: SkillItem[] }>(
-      "/skills?locale=en"
-    );
+    const response = await axiosInstance.get<{ docs: SkillItem[] }>("/skills");
     return response.data.docs;
-  }, []);
+  }, [locale]);
 
   const { data, loading, error } = useApi<SkillItem[]>(fetchSkills);
 
@@ -47,12 +48,19 @@ export function useSkills() {
 }
 
 export function useTechnologies() {
+  const { locale } = useLocale();
+
   const fetchTechnologies = useCallback(async () => {
     const response = await axiosInstance.get<{ docs: SkillItem[] }>(
-      "/technologies?locale=en&limit=100"
+      "/technologies",
+      {
+        params: {
+          limit: 100,
+        },
+      }
     );
     return response.data.docs;
-  }, []);
+  }, [locale]);
 
   const { data, loading, error } = useApi<SkillItem[]>(fetchTechnologies);
 
