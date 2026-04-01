@@ -60,7 +60,7 @@ export default function HeroSection({ scrollToId }: HeroSectionProps) {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col justify-center snap-center md:snap-none"
+      className="relative min-h-screen flex flex-col justify-center snap-none md:snap-center"
       style={{ perspective: "1200px" }}
     >
     <motion.div
