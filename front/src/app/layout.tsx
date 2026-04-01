@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 //import NavDrawer from "@/components/nav-drawer";
+import AppProviders from "@/components/providers/app-providers";
 import WipPopup from "@/components/wip-popup";
 
 export const metadata: Metadata = {
@@ -20,8 +21,10 @@ export default function RootLayout({
       <body
         className="flex min-h-screen flex-col items-center p-0"
       >
-        <WipPopup />
+        <AppProviders>
+          <WipPopup />
           {children}
+        </AppProviders>
       </body>
     </html>
   );
