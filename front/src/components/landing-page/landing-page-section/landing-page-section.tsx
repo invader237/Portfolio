@@ -20,8 +20,8 @@ export default function LandingPageSection({
         flex
         items-center
         justify-center
-        snap-center
-        md:snap-none
+        snap-none
+        md:snap-center
       "
     >
       <motion.div
