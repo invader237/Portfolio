@@ -4,20 +4,22 @@ import { useState } from 'react';
 import SkillBadge from '@/components/skill-badge';
 import SearchInput from '@/components/search-input';
 import LandingPageSection from '@/components/landing-page/landing-page-section';
-
-const skills = [
-  'JavaScript', 'TypeScript', 'React', 'Next.js', 'Java', 'Spring Boot 3', 'Spring Framework', 'Hibernate',
-  'C', 'Python', 'Docker', 'Kubernetes', 'HTML', 'CSS', 'Tailwind CSS', 'Git', 'RESTful APIs', 'OpenAPI',
-  'SQL', 'NoSQL', 'CI/CD', 'Agile Methodologies', 'Kanban', 'Scrum', 'Microservices', 'Hexagonal Architecture',
-  'FastAPI', 'Expo', 'React Native', 'PHP', 'Symfony', 'MySQL', 'PostgreSQL', 'MongoDB', 'Pytorch', 'Machine Learning',
-  'CNN', 'Deep Learning',
-];
+import { useSkillsAndTechnologies } from './skills-section.hook';
 
 export default function SkillsSection() {
   const [search, setSearch] = useState('');
+  const { technologies, loading, error } = useSkillsAndTechnologies();
 
-  const filteredSkills = skills.filter(skill =>
-    skill.toLowerCase().includes(search.toLowerCase())
+  if (loading) {
+    return <p className="text-white">Loading skills...</p>;
+  }
+
+  if (error) {
+    return <p className="text-red-400">Failed to load skills</p>;
+  }
+
+  const filteredSkills = technologies.filter((skill) =>
+    skill.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -38,22 +40,17 @@ export default function SkillsSection() {
           `,
         }}
       >
-        <div
-          className="flex flex-wrap gap-3 max-h-30 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent p-4 h-full"
-          style={{
-            borderRadius: '1rem',
-            boxShadow: `
-              inset 0 4px 6px rgba(0,0,0,0.1),
-              inset 0 -4px 6px rgba(0,0,0,0.1),
-              inset 4px 0 6px rgba(0,0,0,0.1),
-              inset -4px 0 6px rgba(0,0,0,0.1)
-            `,
-          }}
-        >
+      <div className="w-full max-w-4xl mx-auto p-4">
+        <div className="flex flex-wrap gap-3 max-h-30 overflow-y-auto">
           {filteredSkills.map((skill, index) => (
-            <SkillBadge key={skill} skill={skill} index={index} />
+            <SkillBadge
+              key={`${skill.id}-${index}`} 
+              skill={skill.name}
+              index={index}
+            />
           ))}
         </div>
+      </div>
       </div>
     </LandingPageSection>
   );
