@@ -1,4 +1,4 @@
-name: CI DEV - Build & Push Docker Image
+name: Build & Deploy
 
 on:
   push:
@@ -9,9 +9,17 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
+    outputs:
+      sha_short: ${{ steps.vars.outputs.sha_short }}
+
     permissions:
       contents: read
       packages: write
+
+    env:
+      ENV: ${{ github.env }}
+      REGISTRY: ghcr.io
+      IMAGE_NAME: d-portfolio-frontend
 
     steps:
       - name: Checkout code
@@ -20,7 +28,7 @@ jobs:
       - name: Log in to GHCR
         uses: docker/login-action@v3
         with:
-          registry: ghcr.io
+          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
@@ -30,11 +38,15 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/invader237/portfolio-diego/portfolio-diego-dev:${{ steps.vars.outputs.sha_short }} .
+          docker build \
+            -f front/Dockerfile.$ENV \
+            -t $REGISTRY/${{ github.repository_owner }}/$IMAGE_NAME-$ENV:${{ steps.vars.outputs.sha_short }} \
+            front
 
       - name: Push Docker image
         run: |
-          docker push ghcr.io/invader237/portfolio-diego/portfolio-diego-dev:${{ steps.vars.outputs.sha_short }}
+          docker push $REGISTRY/${{ github.repository_owner }}/$IMAGE_NAME-$ENV:${{ steps.vars.outputs.sha_short }}
+
   deploy-to-k8s:
     needs: build-and-push
     runs-on: ubuntu-latest
@@ -47,30 +59,21 @@ jobs:
       name: development
 
     env:
+      ENV: ${{ github.env }}
       REGISTRY: ghcr.io
-      FRONTEND_IMAGE: portfolio-frontend
-      IMAGE_TAG: ${{ steps.vars.outputs.sha_short }}
-      IMAGE_OWNER: ${{ github.repository_owner }}
+      IMAGE_NAME: portfolio-diego
+      IMAGE_TAG: ${{ needs.build-and-push.outputs.sha_short }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Login to GitHub Container Registry
+      - name: Login to GHCR
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and push frontend image
-        uses: docker/build-push-action@v5
-        with:
-          context: ./front
-          file: ./front/Dockerfile.prod
-          push: true
-          tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/${{ env.FRONTEND_IMAGE }}:${{ env.IMAGE_TAG }}
 
       - name: Setup kubectl
         uses: azure/setup-kubectl@v4
@@ -80,12 +83,19 @@ jobs:
       - name: Configure kubeconfig
         run: |
           echo "${{ secrets.KUBECONFIG_DATA }}" | base64 -d > kubeconfig
-          export KUBECONFIG=$PWD/kubeconfig
 
       - name: Deploy to Kubernetes
         run: |
           export KUBECONFIG=$PWD/kubeconfig
 
-          kubectl set image deployment/frontend frontend=${{ env.REGISTRY }}/${{ env.FRONTEND_IMAGE }}:${{ env.IMAGE_TAG }}
+          NAMESPACE=d-portfolio-$ENV
+          IMAGE=$REGISTRY/${{ github.repository_owner }}/$IMAGE_NAME-$ENV:$IMAGE_TAG
 
- 
+          echo "Deploying to namespace: $NAMESPACE"
+          echo "Using image: $IMAGE"
+
+          kubectl get namespace $NAMESPACE || exit 1
+
+          kubectl -n $NAMESPACE set image deployment/frontend frontend=$IMAGE
+
+          kubectl -n $NAMESPACE rollout status deployment/frontend
