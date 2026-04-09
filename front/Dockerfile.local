@@ -1,0 +1,15 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Installer les dépendances globales
+COPY ./package*.json ./
+RUN npm install
+
+EXPOSE 3000
+
+ENV CHOKIDAR_USEPOLLING=true
+ENV WATCHPACK_POLLING=true
+
+# Lancer next dev sur 0.0.0.0
+CMD ["npm", "run", "dev", "--", "-H", "0.0.0.0", "-p", "3000"]
