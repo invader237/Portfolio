@@ -17,7 +17,7 @@ jobs:
       packages: write
 
     env:
-      ENV: ${{ github.env }}
+      ENV: ${{ vars.ENV }}
       REGISTRY: ghcr.io
       IMAGE_NAME: d-portfolio-frontend
 
