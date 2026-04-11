@@ -114,9 +114,12 @@ jobs:
           export KUBECONFIG=$PWD/kubeconfig
 
           NAMESPACE=d-portfolio-$ENV
+          DEPLOYMENT=portfolio-frontend-$ENV
+
           IMAGE=${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}-$ENV:$IMAGE_TAG
 
           echo "Deploying to namespace: $NAMESPACE"
+          echo "Using deployment: $DEPLOYMENT"
           echo "Using image: $IMAGE"
 
           if ! kubectl get namespace $NAMESPACE > /dev/null 2>&1; then
@@ -124,6 +127,6 @@ jobs:
             exit 1
           fi
 
-          kubectl -n $NAMESPACE set image deployment/frontend frontend=$IMAGE
+          kubectl -n $NAMESPACE set image deployment/$DEPLOYMENT frontend=$IMAGE
 
-          kubectl -n $NAMESPACE rollout status deployment/frontend --timeout=180s
+          kubectl -n $NAMESPACE rollout status deployment/$DEPLOYMENT --timeout=180s
