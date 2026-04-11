@@ -14,17 +14,15 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
-    if: ${{ github.ref_name == 'dev' || github.ref_name == 'main' }}
-
-    outputs:
-      sha_short: ${{ steps.vars.outputs.sha_short }}
-
     permissions:
       contents: read
       packages: write
 
     env:
       ENV: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
+
+    outputs:
+      sha_short: ${{ steps.vars.outputs.sha_short }}
 
     steps:
       - name: Checkout code
@@ -59,6 +57,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+
   deploy-to-k8s:
     needs: build-and-push
     runs-on: ubuntu-latest
@@ -70,14 +69,13 @@ jobs:
       packages: read
 
     environment:
-      name: ${{ 
-        github.ref_name == 'dev' && 'development' || 
-        github.ref_name == 'main' && 'production' 
-      }}
+      name: ${{ github.ref_name == 'main' && 'production' || 'development' }}
 
     env:
       ENV: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
       IMAGE_TAG: ${{ needs.build-and-push.outputs.sha_short }}
+      REGISTRY: ghcr.io
+      IMAGE_NAME: d-portfolio-frontend
 
     steps:
       - name: Checkout code
@@ -109,6 +107,7 @@ jobs:
       - name: Configure kubeconfig
         run: |
           echo "${{ secrets.KUBECONFIG_DATA }}" | base64 -d > kubeconfig
+          chmod 600 kubeconfig
 
       - name: Deploy to Kubernetes
         run: |
@@ -120,8 +119,11 @@ jobs:
           echo "Deploying to namespace: $NAMESPACE"
           echo "Using image: $IMAGE"
 
-          kubectl get namespace $NAMESPACE || exit 1
+          if ! kubectl get namespace $NAMESPACE > /dev/null 2>&1; then
+            echo "Namespace $NAMESPACE does not exist"
+            exit 1
+          fi
 
           kubectl -n $NAMESPACE set image deployment/frontend frontend=$IMAGE
 
-          kubectl -n $NAMESPACE rollout status deployment/frontend --timeout=60s
+          kubectl -n $NAMESPACE rollout status deployment/frontend --timeout=180s
