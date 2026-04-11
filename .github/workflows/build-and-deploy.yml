@@ -127,6 +127,8 @@ jobs:
             exit 1
           fi
 
-          kubectl -n $NAMESPACE set image deployment/$DEPLOYMENT frontend=$IMAGE
+          CONTAINER=$(kubectl get deployment $DEPLOYMENT -n $NAMESPACE -o jsonpath="{.spec.template.spec.containers[0].name}")
+
+          kubectl -n $NAMESPACE set image deployment/$DEPLOYMENT $CONTAINER=$IMAGE
 
           kubectl -n $NAMESPACE rollout status deployment/$DEPLOYMENT --timeout=180s
